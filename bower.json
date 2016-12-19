@@ -1,0 +1,20 @@
+{
+  "name": "smart-auth",
+  "version": "0.0.1",
+  "description": "SMART on FHIR Auth example",
+  "authors": [
+    "Kevin Dufendach"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+  },
+  "dependencies": {
+  }
+}
