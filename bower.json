@@ -16,5 +16,8 @@
   "devDependencies": {
     "angular": "^1.6.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "angular-material": "^1.1.1"
+  }
 }
