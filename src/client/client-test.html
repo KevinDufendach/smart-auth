@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FHIR Client test</title>
+</head>
+<body data-ng-app="app">
+
+<p>Angular {{3-2}}s loaded</p>
+
+<div ng-controller="mainCtrl as vm">
+  <textarea cols="50" rows="20">{{patients}}</textarea>
+</div>
+
+<script src="/bower_components/angular/angular.js"></script>
+
+<script src="/fhir/ngFhir.js"></script>
+<!--<script src="/fhir/fhir-client-angularjs.js"></script>-->
+
+<script>
+  angular.module('app', ['ng-fhir'])
+    .config(['$fhirProvider', function ($fhirProvider) {
+      $fhirProvider.baseUrl = 'http://try-fhirplace.hospital-systems.com';
+      $fhirProvider.auth = {
+        user: 'user',
+        pass: 'secret'
+      };
+      $fhirProvider.credentials = 'same-origin'
+    }])
+    .controller('mainCtrl', ['$scope', '$fhir', function ($scope, $fhir) {
+      $fhir.search(
+        {
+          type: 'Patient',
+          query: {name: 'emerald'}
+        }).then(
+        function (successData) {
+
+          $scope.patients = successData.data.entry;
+
+        },
+        function (failData) {
+          $scope.error = failData;
+        }
+      );
+    }]);
+
+</script>
+
+</body>
+</html>

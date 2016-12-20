@@ -85,3 +85,6 @@ Icon?
 Thumbs.db
 packages
 
+# SMART on FHIR fhir.js and angular client
+######################
+fhir/

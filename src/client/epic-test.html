@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Auth App - Launch with Epic</title>
+</head>
+<body>
+Loading... check console for details
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script>
+  var baseUrl = "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/";
+  var patientSearchString = "/Patient?given=Jason&family=Argonaut";
+
+  $.getJSON(baseUrl + patientSearchString, function(data,error) {
+    console.log(data);
+
+    var patientId = data.entry[0].link[0].url.split("/").pop();
+    allergySearch(patientId)
+  });
+
+  function allergySearch(patientId) {
+    var allergySearchString = "AllergyIntolerance?patient=" + patientId;
+    $.getJSON(baseUrl + allergySearchString, function(data,error) {
+      console.log(data);
+    });
+  }
+
+</script>
+</body>
+</html>
